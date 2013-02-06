@@ -1,0 +1,50 @@
+//Importing Needed Functions 
+import java.util.Random; 
+import java.util.Scanner; 
+import static java.lang.System.out; 
+
+public class blackjack { 
+
+public static void main(String[] args) { 
+//Declaring Variables 
+Random randomizer = new Random(); 
+Scanner s = new Scanner (System.in); 
+int roundcard = 0; 
+int playertotal = 0; 
+int aitotal = 0; 
+int tf = 1; 
+boolean won = false; 
+//The welcome message 
+out.println ("Welcome to BlackJack!"); 
+out.println ("Dealing Cards..."); 
+aitotal = (aitotal + randomizer.nextInt(7) + 15); 
+//The main stand/hit loop 
+while ((tf) == 1 && (playertotal) <= 21) { 
+roundcard = (randomizer.nextInt(9) + 2); 
+playertotal = (roundcard + playertotal); 
+out.print ("You picked up a card worth "); 
+out.print (roundcard); 
+out.print (" points, your total score is "); 
+out.println (playertotal); 
+out.print ("Press 0 to stand or 1 to hit: "); 
+tf = (s.nextInt()); 
+} 
+//If statements to determine the outcome of the game 
+if ((playertotal) > 21) { 
+out.println ("BUST!"); 
+}else { 
+out.print ("Your final score was "); 
+out.println (playertotal); 
+out.print ("Your opponent's final score was "); 
+out.println (aitotal); 
+if ((playertotal) > (aitotal) && (playertotal) < 22) { 
+out.println ("You Win!"); 
+} 
+else if ((playertotal) < (aitotal)) { 
+out.println ("You lose!"); 
+} else if ((playertotal) == (aitotal)) { 
+out.println ("It was a tie!"); 
+} 
+} 
+} 
+}
