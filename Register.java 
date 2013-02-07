@@ -1,0 +1,120 @@
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class register extends JFrame
+{
+  JTextField firstName, lastName, username, password, emailAddress;
+
+	//declaring image
+	BufferedImage backgroundImage;
+
+	//constructor
+	public register(BufferedImage backgroundImage)
+	{
+		this.backgroundImage = backgroundImage;
+	}
+	//Second Constructor
+	public register()
+	{
+		String location = "background.png";
+		//Added try and Catch to avoid errors
+		try{
+			 backgroundImage = ImageIO.read(new File(location));
+		}catch(IOException e)
+		{
+		System.out.println(e);
+		}
+
+
+		setTitle("Title");
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		//Setting size of applet.
+		setSize(800,600);
+		//defining my own positions
+		//setLayout(new FlowLayout());
+		//define location on screen;
+		setLocation(200,100);
+		//preventing user from changing the size
+		setResizable(false);
+
+		setVisible(true);
+
+
+		//Adds button to screen.
+
+
+
+		//Add the background
+		backgroundPane bp = new backgroundPane();
+		add(bp);
+		bp.repaint();
+
+	}
+
+	public void components()
+	{
+
+		firstName = new JTextField(10);
+		firstName.setBounds(220,100,325,40);
+		firstName.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+		firstName.setText("First Name ");
+		add(firstName);
+
+		lastName = new JTextField(10);
+		lastName.setBounds(220,175,325,40);
+		lastName.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+		lastName.setText("Last Name ");
+		add(lastName);
+
+		username = new JTextField(10);
+		username.setBounds(220,250,325,40);
+		username.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+		username.setText("Username ");
+		add(username);
+
+		password = new JTextField(10);
+		password.setBounds(220,325,325,40);
+		password.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+		password.setText("Password ");
+		add(password);
+
+		emailAddress = new JTextField(10);
+		emailAddress.setBounds(220,400,325,40);
+		emailAddress.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+		emailAddress.setText("Email Address ");
+		add(emailAddress);
+
+	}
+
+	public static void main(String args[]) throws IOException
+	{
+		//This doesn't get triggerd as nothing is looking for main
+
+		//This line will allow this file to be standalone as
+		//well as intergratable
+		new register();
+
+	}
+
+	//Subclass that will be used for drawing
+	class backgroundPane extends JPanel
+  	{
+  		public void paint(Graphics g)
+  		{
+		super.paint(g);
+		//setting width and height of image.
+        int x = (getWidth() - backgroundImage.getWidth())/4;
+        int y = (getHeight() - backgroundImage.getHeight())/4;
+		g.drawImage(backgroundImage, x, y, this);
+		components();
+
+  		}
+
+  	}
+}
